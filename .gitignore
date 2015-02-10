@@ -11,3 +11,7 @@ wp-content/cache/
 wp-content/upgrade/
 wp-content/uploads/
 wp-content/wp-cache-config.php
+/themes/simple/nbproject/private/
+/html5/wp/nbproject/private/
+/plugins/mobile-client/nbproject/private/
+/plugins/html5-client/nbproject/private/

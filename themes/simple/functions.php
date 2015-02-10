@@ -11,6 +11,7 @@
  * @subpackage simple
  * @since simple 1.0
  */
+return;
 ?>
 <?php
 

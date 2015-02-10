@@ -1,8 +1,18 @@
-<!DOCTYPE html>
-
+<!--
+Copyright 2015 Yannick Roffin.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
  <?php
-/**
- * The main template file
+ /**
+ * The main index file
  *
  * This is the most generic template file in a WordPress theme and one of the
  * two required files for a theme (the other being style.css).
@@ -20,17 +30,22 @@ get_header();
 ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-        <div <?php post_class() ?> id="post-<?php the_ID(); ?>">
-            <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-            <?php include (TEMPLATEPATH . '/inc/meta.php' ); ?>
-            <div class="entry">
-                <?php the_content(); ?>
+        <!-- Main page -->
+        <div data-role="page" id="post-<?php the_ID(); ?>" data-theme="{{theme}}" <?php post_class() ?>>
+            <!-- Header here -->
+            <div role="main" class="ui-content">
+                <div>
+                    <h1><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h1>
+                    <?php include (TEMPLATEPATH . '/inc/meta.php' ); ?>
+                    <?php the_content(); ?>
+                    <div class="postmetadata">
+                        <?php the_tags('Tags: ', ', ', '<br />'); ?>
+                            Posted in <?php the_category(', ') ?> | 
+                        <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?>
+                    </div>
+                </div> <!-- content-->
             </div>
-            <div class="postmetadata">
-                <?php the_tags('Tags: ', ', ', '<br />'); ?>
-                Posted in <?php the_category(', ') ?> | 
-                <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?>
-            </div>
+            <!-- Footer here -->
         </div>
     <?php endwhile; ?>
     <?php include (TEMPLATEPATH . '/inc/nav.php' ); ?>

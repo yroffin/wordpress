@@ -5,7 +5,7 @@
  * Author: Yannick Roffin
  * Author URI: https://plus.google.com/u/0/communities/114300723123963576395
  * Version: 1.0
- * Plugin URI: https://github.com/yroffin/wordpress/tree/master/plugins/mobile-client
+ * Plugin URI: https://github.com/yroffin/wordpress/tree/master/plugins/html5-client
  */
 
 /**
@@ -14,6 +14,11 @@
  * @var string
  */
 define( 'HTML5_CLIENT_VERSION', '1.0' );
+
+/**
+ * Include our files for the API
+ */
+include_once( dirname( __FILE__ ) . '/lib/index.php' );
 
 /**
  * Register our plugin
@@ -31,115 +36,7 @@ function html5_client_loaded() {
 	if ( empty( $GLOBALS['wp']->query_vars['html5_client'] ) )
 		return;
 	// Finish off our request
-        html5_client_render();
+        html5_client::index();
 	die();
 }
 add_action( 'template_redirect', 'html5_client_loaded', -100 );
-
-function html5_client_render() {
-?>
-<!doctype html>
-<!--
-Copyright 2014 Yannick Roffin.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
-
-<html lang="en" ng-app="myApp">
-    <head>
-        <title>Wordpress mobile template</title>
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
-    </head>
-    <body ng-controller="BootstrapCtrl" ng-init="load()">
-
-        <!-- Main page -->
-        <div data-role="page" id="home" data-theme="{{wp.theme}}">
-            <div data-role="header">
-                <div data-role="navbar">
-                    <ul>
-                        <li><a href="#home" data-icon="home">Accueil</a></li>
-                        <li><a href="#" data-icon="grid" ng-click="loadPosts('#posts')">Posts</a></li>
-                    </ul>
-                </div>
-                <h1>Jarvis</h1>
-            </div><!-- /header -->
-
-            <div role="main" class="ui-content">
-                <p>Another wordpress mobile client.</p>
-            </div><!-- /content -->
-
-            <div data-role="footer">
-            </div>
-        </div><!-- /page -->
-
-        <!-- Configuration page -->
-        <div data-role="page" id="posts" data-theme="{{wp.theme}}">
-            <div data-role="header">
-                <div data-role="navbar">
-                    <ul>
-                        <li><a href="#home" id="home" data-icon="home">Accueil</a></li>
-                    </ul>
-                </div>
-                <h1>Posts</h1>
-            </div>
-            <div role="main" class="ui-content">
-                <div>
-                	<h1>Posts</h1>
-                    <table data-role="table" id="configuration-clients" data-mode="reflow" class="ui-responsive table-stroke">
-                    	<thead>
-                    		<tr>
-                    			<th data-priority = "1">Id</th>
-                    			<th data-priority = "1">Slug</th>
-                    			<th data-priority = "1">Content</th>
-                    		</tr>
-                    	</thead>
-                    	<tbody>
-                        	<tr ng-repeat="item in wp.data.posts">
-                        		<td>{{item.ID}}</td>
-                        		<td>{{item.slug}}</td>
-                        		<td>{{item.content}}</td>
-                        	</tr>
-                    	</tbody>
-                    </table>
-                </div>
-            </div>
-            <div data-role="footer">
-            </div>
-        </div>
-
-        <!-- Global var -->
-        <?php $wplocation = dirname("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"); ?>
-        <script>var wordpressUrl="<?php echo $wplocation; ?>";</script>
-        <script>var wpRestApiUrl="<?php echo $wplocation; ?>";</script>
-
-        <!-- JQuery -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
-        <!-- AngularJS -->
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular-resource.min.js"></script>
-
-        <!-- Application -->
-        <script src="<?php echo $wplocation; ?>/wp-content/plugins/html5-client/js/app.js"></script>
-        <script src="<?php echo $wplocation; ?>/wp-content/plugins/html5-client/js/services.js"></script>
-        <script src="<?php echo $wplocation; ?>/wp-content/plugins/html5-client/js/controllers.js"></script>
-        <script src="<?php echo $wplocation; ?>/wp-content/plugins/html5-client/js/filters.js"></script>
-        <script src="<?php echo $wplocation; ?>/wp-content/plugins/html5-client/js/directives.js"></script>
-    </body>
-</html>
-<?php
-}

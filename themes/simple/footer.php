@@ -1,3 +1,4 @@
+<?php
 /**
  * The template for displaying all pages
  *
@@ -9,3 +10,19 @@
  * @subpackage simple
  * @since simple 1.0
  */
+?>
+<div id="footer">
+    &copy;<?php echo date("Y");
+echo " ";
+bloginfo('name'); ?>
+</div>
+
+</div>
+
+<?php wp_footer(); ?>
+
+<!-- Don't forget analytics -->
+
+</body>
+
+</html>

@@ -29,26 +29,12 @@ myAppServices.factory('wpServices', [ '$resource', function($resource, $windows)
 			isArray : true,
 			cache : false
 		},
-		getClients : {
-			method : 'GET',
-			url : wordpressUrl + '/info/clients',
+		post : {
+			method : 'POST',
+			url : wpRestApiUrl + '/?json_route=/post',
 			params : {},
 			isArray : false,
 			cache : false
 		},
-		getEvents : {
-			method : 'GET',
-			url : wordpressUrl + '/info/events',
-			params : {},
-			isArray : false,
-			cache : false
-		},
-		send : {
-			method : 'GET',
-			url : wordpressUrl + '/send',
-			params : {},
-			isArray : false,
-			cache : false
-		}
             })
 } ]);

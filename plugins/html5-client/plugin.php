@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: html5-client
+ * Plugin Name: Mobile html5 client
  * Description: Mobile html5 client (using JSON-based REST API for WordPress)
  * Author: Yannick Roffin
  * Author URI: https://plus.google.com/u/0/communities/114300723123963576395

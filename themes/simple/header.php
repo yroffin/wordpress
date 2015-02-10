@@ -10,9 +10,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?> ng-app="myApp">
+<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?> >
     <head profile="http://gmpg.org/xfn/11">
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -62,5 +63,11 @@ limitations under the License.
         <?php wp_head(); ?>
     </head>
 
-    <body ng-controller="BootstrapCtrl" ng-init="load()" <?php body_class(); ?>>
+    <body <?php body_class(); ?>>
+        
+    <div id="header">
+        <h1><a href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a></h1>
+        <div class="description"><?php bloginfo('description'); ?></div>
+    </div>
+
 

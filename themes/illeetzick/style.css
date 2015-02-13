@@ -1,0 +1,25 @@
+/**
+ * Default theming for bootstrap standard
+ *
+ * This is the template that displays all pages by default.
+ * Please note that this is the WordPress construct of pages and that other
+ * 'pages' on your WordPress site will use a different template.
+ *
+ * @package WordPress
+ * @subpackage simple
+ * @since simple 1.0
+ */
+
+.fix-carousel {
+  max-height: 400px;
+  overflow: hidden;
+
+  .item img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+blockquote {
+    font-size: 12px;
+}
